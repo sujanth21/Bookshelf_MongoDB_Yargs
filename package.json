@@ -1,0 +1,15 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "description": "This is a learning app that uses yargs amd mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sujanth",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.5.9",
+    "yargs": "^15.4.1"
+  }
+}
