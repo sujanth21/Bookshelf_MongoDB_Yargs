@@ -1,4 +1,6 @@
 const yargs = require("yargs");
+require("./src/db/mongoose");
+const Book = require("./book");
 
 yargs.command({
   command: "add",
@@ -20,8 +22,21 @@ yargs.command({
       type: "string",
     },
   },
-  handler: (argv) => {
-    console.log("Adding a new book to the shelf", argv);
+  handler: function (argv) {
+    const newBook = new Book({
+      title: argv.title,
+      description: argv.description,
+      author: argv.author,
+    });
+
+    newBook
+      .save()
+      .then((book) => {
+        console.log(book);
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
   },
 });
 
