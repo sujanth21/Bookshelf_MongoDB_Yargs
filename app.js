@@ -40,4 +40,20 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: "list",
+  describe: "List all books",
+  handler: () => {
+    Book.find({})
+      .then((books) => {
+        books.forEach((book) => {
+          console.log(book.title);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+});
+
 yargs.parse();
