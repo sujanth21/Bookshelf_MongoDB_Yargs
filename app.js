@@ -56,4 +56,46 @@ yargs.command({
   },
 });
 
+yargs.command({
+  command: "read",
+  describe: "Read a book",
+  builder: {
+    title: {
+      describe: "Book title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    Book.findOne({ title: argv.title })
+      .then((book) => {
+        console.log(book);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+});
+
+yargs.command({
+  command: "delete",
+  describe: "Delete a book",
+  builder: {
+    title: {
+      describe: "Book title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    Book.findOneAndRemove({ title: argv.title })
+      .then((book) => {
+        console.log("Book deleted from the DB, " + book);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+});
+
 yargs.parse();
